@@ -8,12 +8,16 @@
 
 import Cocoa
 
-class ViewController: NSViewController {
+class ContainerVC: NSSplitViewController {
+
+    var menuVC : NSViewController!
+    var contentVC : NSViewController!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        menuVC = splitViewItems[0].viewController
+        contentVC = splitViewItems[1].viewController
     }
 
     override var representedObject: Any? {
@@ -21,7 +25,4 @@ class ViewController: NSViewController {
         // Update the view, if already loaded.
         }
     }
-
-
 }
-

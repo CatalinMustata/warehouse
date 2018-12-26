@@ -7,12 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E6DB1A3221D3F17000A6E89B /* PartListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DB1A3121D3F17000A6E89B /* PartListVC.swift */; };
+		E6DB1A3421D425C500A6E89B /* OutlineSelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DB1A3321D425C500A6E89B /* OutlineSelectableCell.swift */; };
 		E6F4C65721D390C200FAC50F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F4C65621D390C200FAC50F /* AppDelegate.swift */; };
-		E6F4C65921D390C200FAC50F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F4C65821D390C200FAC50F /* ViewController.swift */; };
+		E6F4C65921D390C200FAC50F /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F4C65821D390C200FAC50F /* ContainerVC.swift */; };
 		E6F4C65C21D390C200FAC50F /* Warehouse.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6F4C65A21D390C200FAC50F /* Warehouse.xcdatamodeld */; };
 		E6F4C65E21D390C200FAC50F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E6F4C65D21D390C200FAC50F /* Assets.xcassets */; };
 		E6F4C66121D390C200FAC50F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E6F4C65F21D390C200FAC50F /* Main.storyboard */; };
 		E6F4C66D21D390C300FAC50F /* WarehouseTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F4C66C21D390C300FAC50F /* WarehouseTests.swift */; };
+		E6F4C67821D39D7000FAC50F /* MenuVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F4C67721D39D7000FAC50F /* MenuVC.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -26,9 +29,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E6DB1A3121D3F17000A6E89B /* PartListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartListVC.swift; sourceTree = "<group>"; };
+		E6DB1A3321D425C500A6E89B /* OutlineSelectableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineSelectableCell.swift; sourceTree = "<group>"; };
 		E6F4C65321D390C200FAC50F /* Warehouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Warehouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6F4C65621D390C200FAC50F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		E6F4C65821D390C200FAC50F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		E6F4C65821D390C200FAC50F /* ContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
 		E6F4C65B21D390C200FAC50F /* Warehouse.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Warehouse.xcdatamodel; sourceTree = "<group>"; };
 		E6F4C65D21D390C200FAC50F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E6F4C66021D390C200FAC50F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -37,6 +42,7 @@
 		E6F4C66821D390C300FAC50F /* WarehouseTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WarehouseTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6F4C66C21D390C300FAC50F /* WarehouseTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WarehouseTests.swift; sourceTree = "<group>"; };
 		E6F4C66E21D390C300FAC50F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		E6F4C67721D39D7000FAC50F /* MenuVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVC.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,9 +85,12 @@
 			isa = PBXGroup;
 			children = (
 				E6F4C65621D390C200FAC50F /* AppDelegate.swift */,
-				E6F4C65821D390C200FAC50F /* ViewController.swift */,
+				E6F4C65821D390C200FAC50F /* ContainerVC.swift */,
 				E6F4C65D21D390C200FAC50F /* Assets.xcassets */,
 				E6F4C65F21D390C200FAC50F /* Main.storyboard */,
+				E6DB1A3321D425C500A6E89B /* OutlineSelectableCell.swift */,
+				E6DB1A3121D3F17000A6E89B /* PartListVC.swift */,
+				E6F4C67721D39D7000FAC50F /* MenuVC.swift */,
 				E6F4C66221D390C200FAC50F /* Info.plist */,
 				E6F4C66321D390C200FAC50F /* Warehouse.entitlements */,
 				E6F4C65A21D390C200FAC50F /* Warehouse.xcdatamodeld */,
@@ -200,8 +209,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6DB1A3421D425C500A6E89B /* OutlineSelectableCell.swift in Sources */,
 				E6F4C65C21D390C200FAC50F /* Warehouse.xcdatamodeld in Sources */,
-				E6F4C65921D390C200FAC50F /* ViewController.swift in Sources */,
+				E6F4C67821D39D7000FAC50F /* MenuVC.swift in Sources */,
+				E6DB1A3221D3F17000A6E89B /* PartListVC.swift in Sources */,
+				E6F4C65921D390C200FAC50F /* ContainerVC.swift in Sources */,
 				E6F4C65721D390C200FAC50F /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -349,7 +361,7 @@
 				CODE_SIGN_ENTITLEMENTS = Warehouse/Warehouse.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = D4F5TTM4H3;
+				DEVELOPMENT_TEAM = 6WPS33T7JH;
 				INFOPLIST_FILE = Warehouse/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ro.bearsoft.Warehouse;
@@ -365,7 +377,7 @@
 				CODE_SIGN_ENTITLEMENTS = Warehouse/Warehouse.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				DEVELOPMENT_TEAM = D4F5TTM4H3;
+				DEVELOPMENT_TEAM = 6WPS33T7JH;
 				INFOPLIST_FILE = Warehouse/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = ro.bearsoft.Warehouse;
