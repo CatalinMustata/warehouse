@@ -14,9 +14,6 @@ class PartListVC: NSViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        contentScrollView.automaticallyAdjustsContentInsets = false
-        contentScrollView.contentInsets = NSEdgeInsets(top: 30, left: 0, bottom: 0, right: 0)
     }
     
 }
