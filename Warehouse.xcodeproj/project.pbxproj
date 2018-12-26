@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E6DB1A3221D3F17000A6E89B /* PartListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DB1A3121D3F17000A6E89B /* PartListVC.swift */; };
+		E6DB1A3421D425C500A6E89B /* OutlineSelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DB1A3321D425C500A6E89B /* OutlineSelectableCell.swift */; };
 		E6F4C65721D390C200FAC50F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F4C65621D390C200FAC50F /* AppDelegate.swift */; };
 		E6F4C65921D390C200FAC50F /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F4C65821D390C200FAC50F /* ContainerVC.swift */; };
 		E6F4C65C21D390C200FAC50F /* Warehouse.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6F4C65A21D390C200FAC50F /* Warehouse.xcdatamodeld */; };
@@ -27,6 +29,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E6DB1A3121D3F17000A6E89B /* PartListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartListVC.swift; sourceTree = "<group>"; };
+		E6DB1A3321D425C500A6E89B /* OutlineSelectableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineSelectableCell.swift; sourceTree = "<group>"; };
 		E6F4C65321D390C200FAC50F /* Warehouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Warehouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6F4C65621D390C200FAC50F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6F4C65821D390C200FAC50F /* ContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
@@ -84,6 +88,8 @@
 				E6F4C65821D390C200FAC50F /* ContainerVC.swift */,
 				E6F4C65D21D390C200FAC50F /* Assets.xcassets */,
 				E6F4C65F21D390C200FAC50F /* Main.storyboard */,
+				E6DB1A3321D425C500A6E89B /* OutlineSelectableCell.swift */,
+				E6DB1A3121D3F17000A6E89B /* PartListVC.swift */,
 				E6F4C67721D39D7000FAC50F /* MenuVC.swift */,
 				E6F4C66221D390C200FAC50F /* Info.plist */,
 				E6F4C66321D390C200FAC50F /* Warehouse.entitlements */,
@@ -203,8 +209,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E6DB1A3421D425C500A6E89B /* OutlineSelectableCell.swift in Sources */,
 				E6F4C65C21D390C200FAC50F /* Warehouse.xcdatamodeld in Sources */,
 				E6F4C67821D39D7000FAC50F /* MenuVC.swift in Sources */,
+				E6DB1A3221D3F17000A6E89B /* PartListVC.swift in Sources */,
 				E6F4C65921D390C200FAC50F /* ContainerVC.swift in Sources */,
 				E6F4C65721D390C200FAC50F /* AppDelegate.swift in Sources */,
 			);

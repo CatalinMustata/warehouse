@@ -21,7 +21,7 @@ class MenuVC: NSViewController, NSWindowDelegate {
         outlineView.expandItem(nil, expandChildren: true)
 
         contentScrollView.automaticallyAdjustsContentInsets = false
-        contentScrollView.contentInsets = NSEdgeInsets(top: 20, left: 0, bottom: 0, right: 0)
+        contentScrollView.contentInsets = NSEdgeInsets(top: 30, left: 0, bottom: 0, right: 0)
     }
 }
 
@@ -105,6 +105,22 @@ extension MenuVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
 
     func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
         return false
+    }
+
+    func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
+        if let _ = item as? PartCategory {
+            return false
+        }
+
+        return true
+    }
+
+    func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
+        return 24
+    }
+
+    func outlineView(_ outlineView: NSOutlineView, rowViewForItem item: Any) -> NSTableRowView? {
+        return OutlineSelectableCell()
     }
 
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
