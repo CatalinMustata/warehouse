@@ -764,9 +764,8 @@
                                                             <rect key="frame" x="1" y="0.0" width="197" height="17"/>
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
-                                                                <textField verticalHuggingPriority="750" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="KC8-eS-tcp">
-                                                                    <rect key="frame" x="0.0" y="1" width="197" height="14"/>
-                                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                                                                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="KC8-eS-tcp">
+                                                                    <rect key="frame" x="0.0" y="2" width="197" height="14"/>
                                                                     <textFieldCell key="cell" lineBreakMode="truncatingTail" enabled="NO" refusesFirstResponder="YES" sendsActionOnEndEditing="YES" title="HEADER CELL" id="rdh-c5-MSs">
                                                                         <font key="font" metaFont="smallSystemBold"/>
                                                                         <color key="textColor" name="headerColor" catalog="System" colorSpace="catalog"/>
@@ -774,6 +773,11 @@
                                                                     </textFieldCell>
                                                                 </textField>
                                                             </subviews>
+                                                            <constraints>
+                                                                <constraint firstItem="KC8-eS-tcp" firstAttribute="centerY" secondItem="Bc2-F8-vg1" secondAttribute="centerY" id="apc-oS-CC6"/>
+                                                                <constraint firstAttribute="trailing" secondItem="KC8-eS-tcp" secondAttribute="trailing" constant="2" id="np5-hD-JgS"/>
+                                                                <constraint firstItem="KC8-eS-tcp" firstAttribute="leading" secondItem="Bc2-F8-vg1" secondAttribute="leading" constant="2" id="sQy-ZP-LwT"/>
+                                                            </constraints>
                                                             <connections>
                                                                 <outlet property="textField" destination="KC8-eS-tcp" id="Cuj-it-2JS"/>
                                                             </connections>
@@ -783,8 +787,8 @@
                                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                             <subviews>
                                                                 <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ctF-bs-G42">
-                                                                    <rect key="frame" x="1" y="0.0" width="96" height="17"/>
-                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" id="lcP-BJ-xsh">
+                                                                    <rect key="frame" x="2" y="0.0" width="193" height="17"/>
+                                                                    <textFieldCell key="cell" lineBreakMode="truncatingTail" sendsActionOnEndEditing="YES" title="Table View Cell" usesSingleLineMode="YES" id="lcP-BJ-xsh">
                                                                         <font key="font" metaFont="system"/>
                                                                         <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -792,8 +796,8 @@
                                                                 </textField>
                                                             </subviews>
                                                             <constraints>
-                                                                <constraint firstItem="ctF-bs-G42" firstAttribute="leading" secondItem="zJi-6f-zx2" secondAttribute="leading" constant="3" id="PVh-Z3-8gk"/>
-                                                                <constraint firstAttribute="trailing" secondItem="ctF-bs-G42" secondAttribute="trailing" constant="102" id="WFb-7M-NvO"/>
+                                                                <constraint firstItem="ctF-bs-G42" firstAttribute="leading" secondItem="zJi-6f-zx2" secondAttribute="leading" constant="4" id="PVh-Z3-8gk"/>
+                                                                <constraint firstAttribute="trailing" secondItem="ctF-bs-G42" secondAttribute="trailing" constant="4" id="WFb-7M-NvO"/>
                                                                 <constraint firstItem="ctF-bs-G42" firstAttribute="centerY" secondItem="zJi-6f-zx2" secondAttribute="centerY" id="Xib-8K-lrn"/>
                                                             </constraints>
                                                             <connections>
