@@ -8,9 +8,15 @@
 
 import Cocoa
 
+protocol MenuViewControllerDelegate: class {
+    func partTypeDidChangeTo(_ partType: PartType) -> Void
+}
+
 class MenuVC: NSViewController, NSWindowDelegate {
     @IBOutlet weak var outlineView: NSOutlineView!
     @IBOutlet weak var contentScrollView: NSScrollView!
+
+    weak var menuDelegate: MenuViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -26,24 +32,6 @@ class MenuVC: NSViewController, NSWindowDelegate {
 }
 
 extension MenuVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
-
-    class PartCategory {
-        fileprivate let name: String
-        fileprivate let children: [PartType]?
-
-        init(_ name: String, withChildren children: [PartType]?){
-            self.name = name
-            self.children = children
-        }
-    }
-
-    class PartType {
-        let name: String
-
-        init(_ name: String) {
-            self.name = name
-        }
-    }
 
     static let categories = [PartCategory("PASSIVE", withChildren: [PartType("Resistors"), PartType("Capacitors")]),
                              PartCategory("ACTIVE", withChildren: [PartType("OpAmps"), PartType("Integrated Circuits")])]
@@ -94,6 +82,19 @@ extension MenuVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
     }
 
     // MARK: Delegate
+
+    func outlineViewSelectionDidChange(_ notification: Notification) {
+        guard let menu = notification.object as? NSOutlineView else {
+            print("Notification did not came from outline view.")
+            return
+        }
+
+        if let partType = menu.item(atRow: menu.selectedRow) as? PartType {
+            menuDelegate?.partTypeDidChangeTo(partType)
+        } else {
+            print("error")
+        }
+    }
 
     func outlineView(_ outlineView: NSOutlineView, isGroupItem item: Any) -> Bool {
         if let _ = item as? PartCategory {
