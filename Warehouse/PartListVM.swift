@@ -12,14 +12,13 @@ struct PartList<T: PartModel> {
 
     private(set) var items: [T]?
 
-    init(with partType: PartModel.Type?) {
-        guard let application = NSApplication.shared.delegate as? AppDelegate,
-              let type = partType else {
+    init(of partType: T.Type) {
+        guard let application = NSApplication.shared.delegate as? AppDelegate else {
             items = []
             return
         }
 
-        let fetchRequest = NSFetchRequest<T>(entityName: type.entityName)
+        let fetchRequest = NSFetchRequest<T>(entityName: partType.entityName)
 
         let context = application.persistentContainer.viewContext
 
@@ -39,7 +38,12 @@ final class PartListVM {
 
     var partType: PartModel.Type? {
         didSet {
-            partList = PartList(with: partType)
+            guard let type = partType else {
+                partList = nil
+                return
+            }
+
+            partList = PartList(of: type)
         }
     }
 
