@@ -13,9 +13,24 @@ class PartListVC: NSViewController, MenuViewControllerDelegate {
     @IBOutlet weak var contentScrollView: NSScrollView!
     @IBOutlet weak var partsTableView: NSTableView!
 
-    private var partType: PartType?
+//    private var partType: PartType?
 
-    private var items = [Part]()
+    private var partListVM: PartListVM
+
+    override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
+        partListVM = PartListVM()
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+
+        partListVM.partListVC = self
+    }
+
+    required init?(coder: NSCoder) {
+        partListVM = PartListVM()
+
+        super.init(coder: coder)
+
+        partListVM.partListVC = self
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,37 +39,19 @@ class PartListVC: NSViewController, MenuViewControllerDelegate {
         partsTableView.dataSource = self
     }
 
-    func partTypeDidChangeTo(_ partType: PartType) {
-        self.partType = partType
+    func partTypeDidChangeTo(_ partType: PartModel.Type) {
+//        self.partType = partType
 
-        refreshData()
+        partListVM.partType = partType
 
         partsTableView.reloadData()
-    }
-
-    private func refreshData() {
-        guard let application = NSApplication.shared.delegate as? AppDelegate else {
-            items = []
-            return
-        }
-
-        let fetchRequest : NSFetchRequest<Resistor> = Resistor.fetchRequest()
-
-        let context = application.persistentContainer.viewContext
-
-        do {
-            try items = context.fetch(fetchRequest)
-        } catch let error as NSError {
-            print(error)
-            items = []
-        }
     }
 }
 
 extension PartListVC: NSTableViewDelegate, NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return items.count
+        return partListVM.partCount
     }
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
@@ -63,7 +60,7 @@ extension PartListVC: NSTableViewDelegate, NSTableViewDataSource {
         }
 
         if let cell = tableView.makeView(withIdentifier: tableColumn.identifier, owner: self) as? NSTableCellView {
-            cell.textField?.stringValue = String(items[row].value)
+            cell.textField?.stringValue = partListVM.item(at: row)?.displayValueString ?? "0"
             return cell
         }
 
