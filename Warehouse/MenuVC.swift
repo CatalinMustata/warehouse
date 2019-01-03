@@ -96,11 +96,7 @@ extension MenuVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
     }
 
     func outlineView(_ outlineView: NSOutlineView, isGroupItem item: Any) -> Bool {
-        if let _ = item as? PartCategory {
-            return true
-        } else {
-            return false
-        }
+        return item is PartCategory
     }
 
     func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
