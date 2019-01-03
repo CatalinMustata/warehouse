@@ -8,11 +8,11 @@
 
 import Cocoa
 
-struct PartCategory<T: PartModel> {
+struct PartCategory {
     let name: String
-    let children: [T.Type]?
+    let children: [PartModel.Type]?
 
-    init(_ name: String, withChildren children: [T.Type]?){
+    init(_ name: String, withChildren children: [PartModel.Type]?){
         self.name = name
         self.children = children
     }

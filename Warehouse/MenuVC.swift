@@ -33,15 +33,12 @@ class MenuVC: NSViewController, NSWindowDelegate {
 
 extension MenuVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
 
-//    static let categories = [PartCategory("PASSIVE", withChildren: [PartType("Resistors"), PartType("Capacitors")]),
-//                             PartCategory("ACTIVE", withChildren: [PartType("OpAmps"), PartType("Integrated Circuits")])]
-
     static let categories = [PartCategory("PASSIVE", withChildren: [ResistorModel.self, CapacitorModel.self])]
 
     // MARK: DataSource
 
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-        if let category = item as? PartCategory<PartModel> {
+        if let category = item as? PartCategory {
             return category.children != nil
         } else {
             return false
@@ -49,7 +46,7 @@ extension MenuVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
     }
 
     func outlineView(_ outlineView: NSOutlineView, objectValueFor tableColumn: NSTableColumn?, byItem item: Any?) -> Any? {
-        if let category = item as? PartCategory<PartModel> {
+        if let category = item as? PartCategory {
             return category.name
         } else if let type = item as? PartModel.Type {
             return type.groupName
@@ -62,7 +59,7 @@ extension MenuVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
         if item == nil {
             return MenuVC.categories[index]
         } else {
-            guard let category = item as? PartCategory<PartModel>, let children = category.children else {
+            guard let category = item as? PartCategory, let children = category.children else {
                 print("\(String(describing:item)) is not a Part Category (only item with children)")
                 abort()
             }
@@ -75,7 +72,7 @@ extension MenuVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
         if item == nil {
             return MenuVC.categories.count
         } else {
-            if let category = item as? PartCategory<PartModel>, let count = category.children?.count {
+            if let category = item as? PartCategory, let count = category.children?.count {
                 return count
             } else {
                 return 0
@@ -99,7 +96,7 @@ extension MenuVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
     }
 
     func outlineView(_ outlineView: NSOutlineView, isGroupItem item: Any) -> Bool {
-        if let _ = item as? PartCategory<PartModel> {
+        if let _ = item as? PartCategory {
             return true
         } else {
             return false
@@ -111,7 +108,7 @@ extension MenuVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
     }
 
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
-        if let _ = item as? PartCategory<PartModel> {
+        if let _ = item as? PartCategory {
             return false
         }
 
@@ -130,7 +127,7 @@ extension MenuVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
         var identifier: NSUserInterfaceItemIdentifier!
         var entryName: String?
 
-        if let category = item as? PartCategory<PartModel> {
+        if let category = item as? PartCategory {
             identifier = NSUserInterfaceItemIdentifier(rawValue: "PartCategoryCell")
             entryName = category.name
         } else if let type = item as? PartModel.Type {
