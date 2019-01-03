@@ -36,6 +36,10 @@ final class PartListVM {
 
     private var partList: PartList<PartModel>?
 
+    init(with viewController: PartListVC) {
+        partListVC = viewController
+    }
+
     var partType: PartModel.Type? {
         didSet {
             guard let type = partType else {

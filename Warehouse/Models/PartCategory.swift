@@ -6,8 +6,6 @@
 //  Copyright © 2018 BearSoft. All rights reserved.
 //
 
-import Cocoa
-
 struct PartCategory {
     let name: String
     let children: [PartModel.Type]?

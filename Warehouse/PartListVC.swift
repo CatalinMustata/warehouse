@@ -13,23 +13,17 @@ class PartListVC: NSViewController, MenuViewControllerDelegate {
     @IBOutlet weak var contentScrollView: NSScrollView!
     @IBOutlet weak var partsTableView: NSTableView!
 
-//    private var partType: PartType?
-
-    private var partListVM: PartListVM
+    private var partListVM: PartListVM!
 
     override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
-        partListVM = PartListVM()
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 
-        partListVM.partListVC = self
+        partListVM = PartListVM(with: self)
     }
 
     required init?(coder: NSCoder) {
-        partListVM = PartListVM()
-
         super.init(coder: coder)
-
-        partListVM.partListVC = self
+        partListVM = PartListVM(with: self)
     }
 
     override func viewDidLoad() {
@@ -40,8 +34,6 @@ class PartListVC: NSViewController, MenuViewControllerDelegate {
     }
 
     func partTypeDidChangeTo(_ partType: PartModel.Type) {
-//        self.partType = partType
-
         partListVM.partType = partType
 
         partsTableView.reloadData()
