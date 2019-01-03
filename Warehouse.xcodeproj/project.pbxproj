@@ -14,6 +14,8 @@
 		E6DB1A3B21D6373800A6E89B /* PartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DB1A3A21D6373800A6E89B /* PartModel.swift */; };
 		E6DB1A3D21D63E0A00A6E89B /* ResistorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DB1A3C21D63E0A00A6E89B /* ResistorModel.swift */; };
 		E6DB1A3F21D6493A00A6E89B /* CapacitorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DB1A3E21D6493A00A6E89B /* CapacitorModel.swift */; };
+		E6DB1A4321DE62E700A6E89B /* MenuVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DB1A4221DE62E700A6E89B /* MenuVM.swift */; };
+		E6DB1A4521DE694800A6E89B /* StoryboardIdentifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DB1A4421DE694800A6E89B /* StoryboardIdentifiers.swift */; };
 		E6F4C65721D390C200FAC50F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F4C65621D390C200FAC50F /* AppDelegate.swift */; };
 		E6F4C65921D390C200FAC50F /* ContainerVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6F4C65821D390C200FAC50F /* ContainerVC.swift */; };
 		E6F4C65C21D390C200FAC50F /* Warehouse.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = E6F4C65A21D390C200FAC50F /* Warehouse.xcdatamodeld */; };
@@ -41,6 +43,8 @@
 		E6DB1A3A21D6373800A6E89B /* PartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartModel.swift; sourceTree = "<group>"; };
 		E6DB1A3C21D63E0A00A6E89B /* ResistorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResistorModel.swift; sourceTree = "<group>"; };
 		E6DB1A3E21D6493A00A6E89B /* CapacitorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CapacitorModel.swift; sourceTree = "<group>"; };
+		E6DB1A4221DE62E700A6E89B /* MenuVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuVM.swift; sourceTree = "<group>"; };
+		E6DB1A4421DE694800A6E89B /* StoryboardIdentifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardIdentifiers.swift; sourceTree = "<group>"; };
 		E6F4C65321D390C200FAC50F /* Warehouse.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Warehouse.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E6F4C65621D390C200FAC50F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		E6F4C65821D390C200FAC50F /* ContainerVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContainerVC.swift; sourceTree = "<group>"; };
@@ -113,6 +117,8 @@
 				E6DB1A3121D3F17000A6E89B /* PartListVC.swift */,
 				E6DB1A3721D6286A00A6E89B /* PartListVM.swift */,
 				E6F4C67721D39D7000FAC50F /* MenuVC.swift */,
+				E6DB1A4221DE62E700A6E89B /* MenuVM.swift */,
+				E6DB1A4421DE694800A6E89B /* StoryboardIdentifiers.swift */,
 				E6DB1A3921D6371F00A6E89B /* Models */,
 				E6F4C66221D390C200FAC50F /* Info.plist */,
 				E6F4C66321D390C200FAC50F /* Warehouse.entitlements */,
@@ -237,12 +243,14 @@
 				E6F4C65C21D390C200FAC50F /* Warehouse.xcdatamodeld in Sources */,
 				E6F4C67821D39D7000FAC50F /* MenuVC.swift in Sources */,
 				E6DB1A3621D5371200A6E89B /* PartCategory.swift in Sources */,
+				E6DB1A4521DE694800A6E89B /* StoryboardIdentifiers.swift in Sources */,
 				E6DB1A3F21D6493A00A6E89B /* CapacitorModel.swift in Sources */,
 				E6DB1A3B21D6373800A6E89B /* PartModel.swift in Sources */,
 				E6DB1A3D21D63E0A00A6E89B /* ResistorModel.swift in Sources */,
 				E6DB1A3221D3F17000A6E89B /* PartListVC.swift in Sources */,
 				E6F4C65921D390C200FAC50F /* ContainerVC.swift in Sources */,
 				E6F4C65721D390C200FAC50F /* AppDelegate.swift in Sources */,
+				E6DB1A4321DE62E700A6E89B /* MenuVM.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

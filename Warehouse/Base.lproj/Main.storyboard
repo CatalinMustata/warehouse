@@ -730,18 +730,78 @@
         <scene sceneID="WAf-eN-UEd">
             <objects>
                 <viewController id="2CT-fr-Y6t" customClass="MenuVC" customModule="Warehouse" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" id="jch-cO-x5t">
+                    <view key="view" wantsLayer="YES" id="jch-cO-x5t">
                         <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
+                            <visualEffectView appearanceType="inheritedVibrantLight" blendingMode="behindWindow" material="underWindowBackground" state="followsWindowActiveState" translatesAutoresizingMaskIntoConstraints="NO" id="tik-Wk-5OW" userLabel="MenuBackground">
+                                <rect key="frame" x="0.0" y="237" width="200" height="63"/>
+                            </visualEffectView>
+                            <customView translatesAutoresizingMaskIntoConstraints="NO" id="IUK-g2-Y1Z" userLabel="MenuContainer">
+                                <rect key="frame" x="53" y="246" width="94" height="24"/>
+                                <subviews>
+                                    <button identifier="bomTabButton" toolTip="BOMs" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="DIM-r0-VmJ">
+                                        <rect key="frame" x="66" y="3" width="18" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="DIM-r0-VmJ" secondAttribute="height" multiplier="1:1" id="kla-hG-suD"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="ListIconTemplate" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="KnK-7n-WvB">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="tabBarButtonPushed:" target="2CT-fr-Y6t" id="A9R-PA-ZNs"/>
+                                        </connections>
+                                    </button>
+                                    <button identifier="organizationTabButton" toolTip="Organization" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="3UT-tF-9wK">
+                                        <rect key="frame" x="38" y="3" width="18" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="3UT-tF-9wK" secondAttribute="height" multiplier="1:1" id="QbS-Ob-MLM"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="BoxIconTemplate" imagePosition="only" alignment="center" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="Se9-EY-USB">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="tabBarButtonPushed:" target="2CT-fr-Y6t" id="HGy-4z-vsd"/>
+                                        </connections>
+                                    </button>
+                                    <button identifier="partsTabButton" toolTip="Parts" focusRingType="none" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cMn-Bj-hQH">
+                                        <rect key="frame" x="10" y="3" width="18" height="18"/>
+                                        <constraints>
+                                            <constraint firstAttribute="width" secondItem="cMn-Bj-hQH" secondAttribute="height" multiplier="1:1" id="ty8-Cf-IWf"/>
+                                        </constraints>
+                                        <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="ResistorIconTemplate" imagePosition="only" alignment="center" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="c0C-Ca-S9c">
+                                            <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                            <font key="font" metaFont="system"/>
+                                        </buttonCell>
+                                        <connections>
+                                            <action selector="tabBarButtonPushed:" target="2CT-fr-Y6t" id="Hcj-eK-fzz"/>
+                                        </connections>
+                                    </button>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="3UT-tF-9wK" firstAttribute="top" secondItem="IUK-g2-Y1Z" secondAttribute="top" constant="3" id="4e2-Kc-UZ5"/>
+                                    <constraint firstAttribute="trailing" secondItem="DIM-r0-VmJ" secondAttribute="trailing" constant="10" id="Be6-yn-mxL"/>
+                                    <constraint firstItem="3UT-tF-9wK" firstAttribute="leading" secondItem="cMn-Bj-hQH" secondAttribute="trailing" constant="10" id="K7Z-2p-Xhg"/>
+                                    <constraint firstAttribute="bottom" secondItem="DIM-r0-VmJ" secondAttribute="bottom" constant="3" id="L8O-vt-4tO"/>
+                                    <constraint firstItem="cMn-Bj-hQH" firstAttribute="leading" secondItem="IUK-g2-Y1Z" secondAttribute="leading" constant="10" id="ZJ0-yH-CYi"/>
+                                    <constraint firstItem="DIM-r0-VmJ" firstAttribute="top" secondItem="IUK-g2-Y1Z" secondAttribute="top" constant="3" id="a16-AL-Kh0"/>
+                                    <constraint firstAttribute="height" constant="24" id="iG9-Hw-7Ph"/>
+                                    <constraint firstAttribute="bottom" secondItem="cMn-Bj-hQH" secondAttribute="bottom" constant="3" id="jr5-QF-2uc"/>
+                                    <constraint firstItem="cMn-Bj-hQH" firstAttribute="top" secondItem="IUK-g2-Y1Z" secondAttribute="top" constant="3" id="noe-xt-dsz"/>
+                                    <constraint firstItem="DIM-r0-VmJ" firstAttribute="leading" secondItem="3UT-tF-9wK" secondAttribute="trailing" constant="10" id="rlQ-rx-ntf"/>
+                                    <constraint firstAttribute="bottom" secondItem="3UT-tF-9wK" secondAttribute="bottom" constant="3" id="uMT-7G-RLj"/>
+                                </constraints>
+                            </customView>
                             <scrollView borderType="none" autohidesScrollers="YES" horizontalLineScroll="17" horizontalPageScroll="10" verticalLineScroll="17" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KOZ-IG-YDH">
-                                <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
+                                <rect key="frame" x="0.0" y="0.0" width="200" height="238"/>
                                 <clipView key="contentView" drawsBackground="NO" id="kbp-mo-4iO">
-                                    <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="200" height="238"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <outlineView verticalHuggingPriority="750" columnAutoresizingStyle="lastColumnOnly" selectionHighlightStyle="sourceList" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" rowSizeStyle="automatic" viewBased="YES" indentationPerLevel="14" outlineTableColumn="2O7-gR-aIq" id="sWB-vv-zTP">
-                                            <rect key="frame" x="0.0" y="0.0" width="200" height="300"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="200" height="238"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="0.0"/>
                                             <color key="backgroundColor" name="_sourceListBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -823,17 +883,30 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
                             </scrollView>
+                            <box verticalHuggingPriority="750" boxType="separator" translatesAutoresizingMaskIntoConstraints="NO" id="dCj-ST-jyi">
+                                <rect key="frame" x="0.0" y="235" width="200" height="5"/>
+                            </box>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="tik-Wk-5OW" firstAttribute="top" secondItem="jch-cO-x5t" secondAttribute="top" id="0RO-sM-5qz"/>
+                            <constraint firstAttribute="trailing" secondItem="tik-Wk-5OW" secondAttribute="trailing" id="4Eb-gK-ekD"/>
                             <constraint firstItem="KOZ-IG-YDH" firstAttribute="leading" secondItem="jch-cO-x5t" secondAttribute="leading" id="5rU-Kw-37t"/>
+                            <constraint firstItem="dCj-ST-jyi" firstAttribute="top" secondItem="IUK-g2-Y1Z" secondAttribute="bottom" constant="8" id="7Tx-BU-FU9"/>
+                            <constraint firstItem="dCj-ST-jyi" firstAttribute="leading" secondItem="jch-cO-x5t" secondAttribute="leading" id="Dc5-3F-hAM"/>
                             <constraint firstAttribute="bottom" secondItem="KOZ-IG-YDH" secondAttribute="bottom" id="Ic2-I1-9cq"/>
-                            <constraint firstItem="KOZ-IG-YDH" firstAttribute="top" secondItem="jch-cO-x5t" secondAttribute="top" id="eeC-Ou-dJj"/>
+                            <constraint firstItem="tik-Wk-5OW" firstAttribute="leading" secondItem="jch-cO-x5t" secondAttribute="leading" id="Lft-ix-vvw"/>
+                            <constraint firstItem="IUK-g2-Y1Z" firstAttribute="top" secondItem="jch-cO-x5t" secondAttribute="top" constant="30" id="UvQ-Zn-fj6"/>
+                            <constraint firstItem="IUK-g2-Y1Z" firstAttribute="centerX" secondItem="jch-cO-x5t" secondAttribute="centerX" id="dhq-qQ-xIO"/>
+                            <constraint firstItem="KOZ-IG-YDH" firstAttribute="top" secondItem="tik-Wk-5OW" secondAttribute="bottom" constant="-1" id="iQK-xp-4g8"/>
+                            <constraint firstAttribute="trailing" secondItem="dCj-ST-jyi" secondAttribute="trailing" id="o1M-Gh-z1Q"/>
                             <constraint firstAttribute="trailing" secondItem="KOZ-IG-YDH" secondAttribute="trailing" id="oOz-od-lzM"/>
+                            <constraint firstItem="KOZ-IG-YDH" firstAttribute="top" secondItem="IUK-g2-Y1Z" secondAttribute="bottom" constant="8" id="u9o-f9-LdP"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="contentScrollView" destination="KOZ-IG-YDH" id="nT0-kj-Yzn"/>
                         <outlet property="outlineView" destination="sWB-vv-zTP" id="zrR-94-W0b"/>
+                        <outlet property="tabMenuContainerView" destination="IUK-g2-Y1Z" id="Ajw-rv-YpB"/>
                     </connections>
                 </viewController>
                 <customObject id="20Q-Xq-eXp" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
@@ -1042,4 +1115,9 @@
             <point key="canvasLocation" x="790" y="831"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="BoxIconTemplate" width="37.5" height="37.5"/>
+        <image name="ListIconTemplate" width="37.5" height="37.5"/>
+        <image name="ResistorIconTemplate" width="37.5" height="37.5"/>
+    </resources>
 </document>
