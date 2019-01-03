@@ -1,4 +1,37 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1" systemVersion="11A491" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <elements/>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="14460.32" systemVersion="18A377a" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Box" representedClassName="Box" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="parts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Part" inverseName="box" inverseEntity="Part" syncable="YES"/>
+    </entity>
+    <entity name="Capacitor" representedClassName="CapacitorModel" parentEntity="Part" syncable="YES" codeGenerationType="category">
+        <attribute name="rating" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <entity name="Inductor" representedClassName="Inductor" parentEntity="Part" syncable="YES" codeGenerationType="class"/>
+    <entity name="Manufacturer" representedClassName="Manufacturer" syncable="YES" codeGenerationType="class">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <relationship name="parts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Part" inverseName="manufacturer" inverseEntity="Part" syncable="YES"/>
+    </entity>
+    <entity name="Part" representedClassName="PartModel" isAbstract="YES" syncable="YES" codeGenerationType="category">
+        <attribute name="category" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="code" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="descriptor" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="quantity" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <attribute name="value" attributeType="Integer 64" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+        <relationship name="box" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Box" inverseName="parts" inverseEntity="Box" syncable="YES"/>
+        <relationship name="manufacturer" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Manufacturer" inverseName="parts" inverseEntity="Manufacturer" syncable="YES"/>
+    </entity>
+    <entity name="Resistor" representedClassName="ResistorModel" parentEntity="Part" syncable="YES" codeGenerationType="category">
+        <attribute name="rating" optional="YES" attributeType="Decimal" defaultValueString="0.0" syncable="YES"/>
+        <attribute name="type" optional="YES" attributeType="Integer 16" defaultValueString="0" usesScalarValueType="YES" syncable="YES"/>
+    </entity>
+    <elements>
+        <element name="Manufacturer" positionX="-345.84375" positionY="-190.21875" width="128" height="75"/>
+        <element name="Box" positionX="-232.92578125" positionY="-302.8515625" width="128" height="75"/>
+        <element name="Resistor" positionX="93.6953125" positionY="-260.41015625" width="128" height="73"/>
+        <element name="Part" positionX="-37.5625" positionY="-85.0390625" width="128" height="148"/>
+        <element name="Capacitor" positionX="144.12109375" positionY="-141.0703125" width="128" height="73"/>
+        <element name="Inductor" positionX="-45" positionY="-99" width="128" height="45"/>
+    </elements>
 </model>

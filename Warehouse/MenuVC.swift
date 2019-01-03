@@ -8,9 +8,15 @@
 
 import Cocoa
 
+protocol MenuViewControllerDelegate: class {
+    func partTypeDidChangeTo(_ partType: PartModel.Type) -> Void
+}
+
 class MenuVC: NSViewController, NSWindowDelegate {
     @IBOutlet weak var outlineView: NSOutlineView!
     @IBOutlet weak var contentScrollView: NSScrollView!
+
+    weak var menuDelegate: MenuViewControllerDelegate?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,26 +33,7 @@ class MenuVC: NSViewController, NSWindowDelegate {
 
 extension MenuVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
 
-    class PartCategory {
-        fileprivate let name: String
-        fileprivate let children: [PartType]?
-
-        init(_ name: String, withChildren children: [PartType]?){
-            self.name = name
-            self.children = children
-        }
-    }
-
-    class PartType {
-        let name: String
-
-        init(_ name: String) {
-            self.name = name
-        }
-    }
-
-    static let categories = [PartCategory("PASSIVE", withChildren: [PartType("Resistors"), PartType("Capacitors")]),
-                             PartCategory("ACTIVE", withChildren: [PartType("OpAmps"), PartType("Integrated Circuits")])]
+    static let categories = [PartCategory("PASSIVE", withChildren: [ResistorModel.self, CapacitorModel.self])]
 
     // MARK: DataSource
 
@@ -61,8 +48,8 @@ extension MenuVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
     func outlineView(_ outlineView: NSOutlineView, objectValueFor tableColumn: NSTableColumn?, byItem item: Any?) -> Any? {
         if let category = item as? PartCategory {
             return category.name
-        } else if let type = item as? PartType {
-            return type.name
+        } else if let type = item as? PartModel.Type {
+            return type.groupName
         } else {
             return nil
         }
@@ -95,12 +82,21 @@ extension MenuVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
 
     // MARK: Delegate
 
-    func outlineView(_ outlineView: NSOutlineView, isGroupItem item: Any) -> Bool {
-        if let _ = item as? PartCategory {
-            return true
-        } else {
-            return false
+    func outlineViewSelectionDidChange(_ notification: Notification) {
+        guard let menu = notification.object as? NSOutlineView else {
+            print("Notification did not came from outline view.")
+            return
         }
+
+        if let partType = menu.item(atRow: menu.selectedRow) as? PartModel.Type {
+            menuDelegate?.partTypeDidChangeTo(partType)
+        } else {
+            print("error")
+        }
+    }
+
+    func outlineView(_ outlineView: NSOutlineView, isGroupItem item: Any) -> Bool {
+        return item is PartCategory
     }
 
     func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
@@ -108,11 +104,7 @@ extension MenuVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
     }
 
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
-        if let _ = item as? PartCategory {
-            return false
-        }
-
-        return true
+        return !(item is PartCategory)
     }
 
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
@@ -130,9 +122,9 @@ extension MenuVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
         if let category = item as? PartCategory {
             identifier = NSUserInterfaceItemIdentifier(rawValue: "PartCategoryCell")
             entryName = category.name
-        } else if let type = item as? PartType {
+        } else if let type = item as? PartModel.Type {
             identifier = NSUserInterfaceItemIdentifier(rawValue: "PartTypeCell")
-            entryName = type.name
+            entryName = type.groupName
         } else {
             print("\(String(describing:item)) is not supported")
         }
