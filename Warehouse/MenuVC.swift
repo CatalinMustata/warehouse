@@ -104,11 +104,7 @@ extension MenuVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
     }
 
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
-        if let _ = item as? PartCategory {
-            return false
-        }
-
-        return true
+        return !(item is PartCategory)
     }
 
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
