@@ -8,29 +8,6 @@
 
 import Cocoa
 
-struct PartList<T: PartModel> {
-
-    private(set) var items: [T]?
-
-    init(of partType: T.Type) {
-        guard let application = NSApplication.shared.delegate as? AppDelegate else {
-            items = []
-            return
-        }
-
-        let fetchRequest = NSFetchRequest<T>(entityName: partType.entityName)
-
-        let context = application.persistentContainer.viewContext
-
-        do {
-            try items = context.fetch(fetchRequest)
-        } catch let error as NSError {
-            print(error)
-            items = []
-        }
-    }
-}
-
 final class PartListVM {
     weak var partListVC: PartListVC?
 

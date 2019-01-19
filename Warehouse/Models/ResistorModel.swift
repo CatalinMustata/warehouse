@@ -41,4 +41,19 @@ public class ResistorModel: PartModel {
 
         return "\(valueMajor)\(separator!)\(valueMinor)"
     }
+
+    override class var displayableFields: [DisplayableField]? {
+        return [.manufacturer, .value, .stock, .box]
+    }
+
+    override func textFor(_ field: DisplayableField) -> String? {
+        switch field {
+        case .value:
+            return displayValueString
+        case .manufacturer:
+            return manufacturer?.name
+        default:
+            return nil
+        }
+    }
 }
