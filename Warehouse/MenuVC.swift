@@ -15,8 +15,11 @@ protocol MenuViewControllerDelegate: class {
 class MenuVC: NSViewController, NSWindowDelegate {
     @IBOutlet weak var outlineView: NSOutlineView!
     @IBOutlet weak var contentScrollView: NSScrollView!
+    @IBOutlet weak var tabMenuContainerView: NSView!
 
     weak var menuDelegate: MenuViewControllerDelegate?
+
+    private var viewModel: MenuVM = MenuVM()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,57 +30,55 @@ class MenuVC: NSViewController, NSWindowDelegate {
         outlineView.expandItem(nil, expandChildren: true)
 
         contentScrollView.automaticallyAdjustsContentInsets = false
-        contentScrollView.contentInsets = NSEdgeInsets(top: 30, left: 0, bottom: 0, right: 0)
+        contentScrollView.contentInsets = NSEdgeInsets(top: 10, left: 0, bottom: 0, right: 0)
+
+        viewModel.dataViewType = .parts
+        for view in tabMenuContainerView.subviews {
+            if let button = view as? NSButton, button.identifier == TabMenuButtons.partsButton {
+                button.state = .on
+                break
+            }
+        }
+    }
+
+    @IBAction func tabBarButtonPushed(_ sender: NSButton) {
+        switch sender.identifier {
+        case TabMenuButtons.partsButton:
+            viewModel.dataViewType = .parts
+        case TabMenuButtons.organizationButton:
+            viewModel.dataViewType = .organization
+        case TabMenuButtons.bomButton:
+            viewModel.dataViewType = .bom
+        default:
+            print("Unsupported button")
+            return
+        }
+
+        outlineView.reloadData()
+        outlineView.expandItem(nil, expandChildren: true)
+
+        for view in tabMenuContainerView.subviews {
+            if let button = view as? NSButton, button != sender {
+                button.state = .off
+            }
+        }
     }
 }
 
 extension MenuVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
 
-    static let categories = [PartCategory("PASSIVE", withChildren: [ResistorModel.self, CapacitorModel.self])]
-
     // MARK: DataSource
 
     func outlineView(_ outlineView: NSOutlineView, isItemExpandable item: Any) -> Bool {
-        if let category = item as? PartCategory {
-            return category.children != nil
-        } else {
-            return false
-        }
-    }
-
-    func outlineView(_ outlineView: NSOutlineView, objectValueFor tableColumn: NSTableColumn?, byItem item: Any?) -> Any? {
-        if let category = item as? PartCategory {
-            return category.name
-        } else if let type = item as? PartModel.Type {
-            return type.groupName
-        } else {
-            return nil
-        }
+        return viewModel.isGroup(item) && viewModel.childCount(of: item) != 0
     }
 
     func outlineView(_ outlineView: NSOutlineView, child index: Int, ofItem item: Any?) -> Any {
-        if item == nil {
-            return MenuVC.categories[index]
-        } else {
-            guard let category = item as? PartCategory, let children = category.children else {
-                print("\(String(describing:item)) is not a Part Category (only item with children)")
-                abort()
-            }
-
-            return children[index]
-        }
+        return viewModel.child(of: item, at: index)
     }
 
     func outlineView(_ outlineView: NSOutlineView, numberOfChildrenOfItem item: Any?) -> Int {
-        if item == nil {
-            return MenuVC.categories.count
-        } else {
-            if let category = item as? PartCategory, let count = category.children?.count {
-                return count
-            } else {
-                return 0
-            }
-        }
+        return viewModel.childCount(of: item)
     }
 
     // MARK: Delegate
@@ -96,7 +97,7 @@ extension MenuVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
     }
 
     func outlineView(_ outlineView: NSOutlineView, isGroupItem item: Any) -> Bool {
-        return item is PartCategory
+        return viewModel.isGroup(item)
     }
 
     func outlineView(_ outlineView: NSOutlineView, shouldShowOutlineCellForItem item: Any) -> Bool {
@@ -104,7 +105,7 @@ extension MenuVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
     }
 
     func outlineView(_ outlineView: NSOutlineView, shouldSelectItem item: Any) -> Bool {
-        return !(item is PartCategory)
+        return viewModel.shouldSelect(item)
     }
 
     func outlineView(_ outlineView: NSOutlineView, heightOfRowByItem item: Any) -> CGFloat {
@@ -116,21 +117,10 @@ extension MenuVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
     }
 
     func outlineView(_ outlineView: NSOutlineView, viewFor tableColumn: NSTableColumn?, item: Any) -> NSView? {
-        var identifier: NSUserInterfaceItemIdentifier!
-        var entryName: String?
-
-        if let category = item as? PartCategory {
-            identifier = NSUserInterfaceItemIdentifier(rawValue: "PartCategoryCell")
-            entryName = category.name
-        } else if let type = item as? PartModel.Type {
-            identifier = NSUserInterfaceItemIdentifier(rawValue: "PartTypeCell")
-            entryName = type.groupName
-        } else {
-            print("\(String(describing:item)) is not supported")
-        }
+        let (identifier, stringValue) = viewModel.cellConfiguration(for: item)
 
         let view = outlineView.makeView(withIdentifier: identifier, owner: self) as? NSTableCellView
-        if let title = entryName {
+        if let title = stringValue {
             view?.textField?.stringValue = title
         }
 
