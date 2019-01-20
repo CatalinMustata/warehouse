@@ -19,6 +19,9 @@ struct SideBarCellIdentifiers {
 }
 
 struct TableCellIdentifiers {
+    // default cell used for creating new views
+    static let defaultTextCell = NSUserInterfaceItemIdentifier(rawValue: "DefaultTextCell")
+    // cell identifiers used to distinguish between different displayable properties
     static let manufacturerCell = NSUserInterfaceItemIdentifier(rawValue: "ManufacturerCell")
     static let valueCell = NSUserInterfaceItemIdentifier(rawValue: "ValueCell")
     static let nameCell = NSUserInterfaceItemIdentifier(rawValue: "NameCell")

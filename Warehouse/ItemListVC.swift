@@ -17,13 +17,10 @@ class ItemListVC: NSViewController, MenuViewControllerDelegate {
 
     override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-
-//        partListVM = PartListVM(with: self)
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-//        partListVM = PartListVM(with: self)
     }
 
     override func viewDidLoad() {
@@ -36,6 +33,13 @@ class ItemListVC: NSViewController, MenuViewControllerDelegate {
     func partTypeDidChangeTo(_ partType: ListEntryModel.Type) {
         partListVM = ItemListVM(of: partType)
 
+        partsTableView.reloadData()
+        // it's mandatory to issue the reconfigure call after reloading data in order to
+        // set the correct data set size for the table view
+        reconfigureColumns()
+    }
+
+    private func reconfigureColumns() {
         while let column = partsTableView.tableColumns.last {
             partsTableView.removeTableColumn(column)
         }
@@ -45,8 +49,6 @@ class ItemListVC: NSViewController, MenuViewControllerDelegate {
             tableColumn.title = title
             partsTableView.addTableColumn(tableColumn)
         })
-
-        partsTableView.reloadData()
     }
 }
 
@@ -61,7 +63,7 @@ extension ItemListVC: NSTableViewDelegate, NSTableViewDataSource {
             return nil
         }
 
-        if let cell = tableView.makeView(withIdentifier: tableColumn.identifier, owner: self) as? NSTableCellView {
+        if let cell = tableView.makeView(withIdentifier: TableCellIdentifiers.defaultTextCell, owner: self) as? NSTableCellView {
             cell.textField?.stringValue = partListVM?.textForEntry(at: row, columnIdentifier: tableColumn.identifier) ?? "-"
             return cell
         }

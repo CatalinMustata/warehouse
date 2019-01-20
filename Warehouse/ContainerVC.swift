@@ -27,6 +27,7 @@ class ContainerVC: NSSplitViewController {
         }
 
         menuVC.menuDelegate = contentVC
+        contentVC.partTypeDidChangeTo(ResistorModel.self)
     }
 
     override var representedObject: Any? {
