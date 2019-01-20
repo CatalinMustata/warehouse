@@ -24,4 +24,5 @@ struct TableCellIdentifiers {
     static let nameCell = NSUserInterfaceItemIdentifier(rawValue: "NameCell")
     static let boxCell =  NSUserInterfaceItemIdentifier(rawValue: "BoxCell")
     static let stockCell =  NSUserInterfaceItemIdentifier(rawValue: "StockCell")
+    static let typeCell =  NSUserInterfaceItemIdentifier(rawValue: "TypeCell")
 }

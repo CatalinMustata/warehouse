@@ -43,7 +43,7 @@ public class ResistorModel: PartModel {
     }
 
     override class var displayableFields: [DisplayableField]? {
-        return [.manufacturer, .value, .stock, .box]
+        return [.manufacturer, .value, .stock, .box, .type]
     }
 
     override func textFor(_ field: DisplayableField) -> String? {

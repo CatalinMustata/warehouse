@@ -15,6 +15,7 @@ enum DisplayableField {
     case stock
     case box
     case manufacturer
+    case type
 }
 
 public class ListEntryModel: NSManagedObject {

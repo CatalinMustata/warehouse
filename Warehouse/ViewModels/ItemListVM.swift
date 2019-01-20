@@ -18,7 +18,9 @@ struct ColumnMapping {
 
     static let forField: Dictionary<DisplayableField, ColumnDescriptor> = [
         .manufacturer : (TableCellIdentifiers.manufacturerCell, "Manufacturer"),
-        .value: (TableCellIdentifiers.valueCell, "Value")
+        .value: (TableCellIdentifiers.valueCell, "Value"),
+        .box: (TableCellIdentifiers.boxCell, "Box"),
+        .type: (TableCellIdentifiers.typeCell, "Type")
     ]
 }
 
