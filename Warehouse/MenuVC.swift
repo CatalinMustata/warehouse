@@ -9,7 +9,7 @@
 import Cocoa
 
 protocol MenuViewControllerDelegate: class {
-    func partTypeDidChangeTo(_ partType: PartModel.Type) -> Void
+    func partTypeDidChangeTo(_ partType: ListEntryModel.Type) -> Void
 }
 
 class MenuVC: NSViewController, NSWindowDelegate {

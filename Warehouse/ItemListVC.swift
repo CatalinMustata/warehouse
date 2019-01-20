@@ -8,22 +8,22 @@
 
 import Cocoa
 
-class PartListVC: NSViewController, MenuViewControllerDelegate {
+class ItemListVC: NSViewController, MenuViewControllerDelegate {
 
     @IBOutlet weak var contentScrollView: NSScrollView!
     @IBOutlet weak var partsTableView: NSTableView!
 
-    private var partListVM: PartListVM!
+    private var partListVM: ItemListVM<ListEntryModel>?
 
     override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
 
-        partListVM = PartListVM(with: self)
+//        partListVM = PartListVM(with: self)
     }
 
     required init?(coder: NSCoder) {
         super.init(coder: coder)
-        partListVM = PartListVM(with: self)
+//        partListVM = PartListVM(with: self)
     }
 
     override func viewDidLoad() {
@@ -33,17 +33,27 @@ class PartListVC: NSViewController, MenuViewControllerDelegate {
         partsTableView.dataSource = self
     }
 
-    func partTypeDidChangeTo(_ partType: PartModel.Type) {
-        partListVM.partType = partType
+    func partTypeDidChangeTo(_ partType: ListEntryModel.Type) {
+        partListVM = ItemListVM(of: partType)
+
+        while let column = partsTableView.tableColumns.last {
+            partsTableView.removeTableColumn(column)
+        }
+
+        partListVM?.columnList.forEach({ (identifier, title) in
+            let tableColumn = NSTableColumn(identifier: identifier)
+            tableColumn.title = title
+            partsTableView.addTableColumn(tableColumn)
+        })
 
         partsTableView.reloadData()
     }
 }
 
-extension PartListVC: NSTableViewDelegate, NSTableViewDataSource {
+extension ItemListVC: NSTableViewDelegate, NSTableViewDataSource {
 
     func numberOfRows(in tableView: NSTableView) -> Int {
-        return partListVM.partCount
+        return partListVM?.viewCount ?? 0
     }
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
@@ -52,7 +62,7 @@ extension PartListVC: NSTableViewDelegate, NSTableViewDataSource {
         }
 
         if let cell = tableView.makeView(withIdentifier: tableColumn.identifier, owner: self) as? NSTableCellView {
-            cell.textField?.stringValue = partListVM.item(at: row)?.displayValueString ?? "0"
+            cell.textField?.stringValue = partListVM?.textForEntry(at: row, columnIdentifier: tableColumn.identifier) ?? "-"
             return cell
         }
 

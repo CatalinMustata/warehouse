@@ -1,13 +1,28 @@
 //
-//  PartListViewModel.swift
+//  SmartViewModel.swift
 //  Warehouse
 //
-//  Created by Catalin Mustata on 19/01/2019.
+//  Created by Catalin Mustata on 20/01/2019.
 //  Copyright © 2019 BearSoft. All rights reserved.
 //
+
 import Cocoa
 
-struct PartList<T: PartModel> {
+typealias ColumnDescriptor = (identifier: NSUserInterfaceItemIdentifier, title: String)
+
+struct ColumnMapping {
+    static let forIdentifier: Dictionary<NSUserInterfaceItemIdentifier, DisplayableField> = [
+        TableCellIdentifiers.manufacturerCell: .manufacturer,
+        TableCellIdentifiers.valueCell:        .value
+    ]
+
+    static let forField: Dictionary<DisplayableField, ColumnDescriptor> = [
+        .manufacturer : (TableCellIdentifiers.manufacturerCell, "Manufacturer"),
+        .value: (TableCellIdentifiers.valueCell, "Value")
+    ]
+}
+
+struct PartList<T: ListEntryModel> {
 
     private(set) var items: [T]?
 
@@ -30,30 +45,27 @@ struct PartList<T: PartModel> {
     }
 }
 
+class ItemListVM<T: ListEntryModel> {
+    private var entryList: PartList<T>
 
-final class PartListViewModel<T: PartModel>: ListViewModel {
-    var columnList = [ColumnDescriptor]()
+    var viewCount: Int {
+        return entryList.items?.count ?? 0
+    }
 
-    typealias ItemModel = T
-
-    private var partList: PartList<T>?
+    private (set) var columnList = [ColumnDescriptor]()
 
     init(of type: T.Type) {
-        partList = PartList(of: type)
+        entryList = PartList(of: type)
 
-        T.displayableFields?.forEach { (displayableField) in
+        type.displayableFields?.forEach { (displayableField) in
             if let descriptor = ColumnMapping.forField[displayableField] {
                 columnList.append(descriptor)
             }
         }
     }
 
-    var viewCount: Int {
-        return partList?.items?.count ?? 0
-    }
-
     func textForEntry(at rowIndex: Int, columnIdentifier: NSUserInterfaceItemIdentifier) -> String {
-        guard let items = partList?.items else {
+        guard let items = entryList.items else {
             return "-"
         }
 
@@ -66,7 +78,8 @@ final class PartListViewModel<T: PartModel>: ListViewModel {
         return item.textFor(field) ?? "-"
     }
 
-    func addEntry(_ entry: T) {
-        // nothing here yet
+    func addEntry<T: ListEntryModel>(_ entry: T) -> Void {
+        //nothing here yet
     }
 }
+
