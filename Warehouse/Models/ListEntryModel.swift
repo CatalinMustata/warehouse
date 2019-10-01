@@ -9,13 +9,14 @@
 import CoreData
 
 enum DisplayableField {
-    case name
+    case code
     case model
     case value
     case stock
     case box
     case manufacturer
     case type
+    case rating
 }
 
 public class ListEntryModel: NSManagedObject {

@@ -19,6 +19,10 @@ public class PartModel: ListEntryModel {
         return String(value)
     }
 
+    override class var displayableFields: [DisplayableField]? {
+        return [.code, .manufacturer, .model, .value, .stock, .box]
+    }
+
     override func set(_ value: Any, for field: DisplayableField) -> Bool {
         switch field {
         case .box:
@@ -49,6 +53,20 @@ public class PartModel: ListEntryModel {
             }
 
             self.value = partValue
+        case .model:
+            guard let descriptor = value as? String else {
+                print("Invalid value of type (\(type(of: value))) instead of String")
+                return false
+            }
+
+            self.descriptor = descriptor
+        case .code:
+            guard let code = value as? String else {
+                print("Invalid value of type (\(type(of: value))) instead of String")
+                return false
+            }
+
+            self.code = code
         default:
             return false
         }

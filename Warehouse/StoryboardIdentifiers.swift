@@ -24,8 +24,10 @@ struct TableCellIdentifiers {
     // cell identifiers used to distinguish between different displayable properties
     static let manufacturerCell = NSUserInterfaceItemIdentifier(rawValue: "ManufacturerCell")
     static let valueCell = NSUserInterfaceItemIdentifier(rawValue: "ValueCell")
-    static let nameCell = NSUserInterfaceItemIdentifier(rawValue: "NameCell")
+    static let modelCell = NSUserInterfaceItemIdentifier(rawValue: "ModelCell")
     static let boxCell =  NSUserInterfaceItemIdentifier(rawValue: "BoxCell")
     static let stockCell =  NSUserInterfaceItemIdentifier(rawValue: "StockCell")
     static let typeCell =  NSUserInterfaceItemIdentifier(rawValue: "TypeCell")
+    static let codeCell =  NSUserInterfaceItemIdentifier(rawValue: "CodeCell")
+    static let ratingCell =  NSUserInterfaceItemIdentifier(rawValue: "RatingCell")
 }

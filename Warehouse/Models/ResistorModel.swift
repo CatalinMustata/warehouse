@@ -43,7 +43,7 @@ public class ResistorModel: PartModel {
     }
 
     override class var displayableFields: [DisplayableField]? {
-        return [.manufacturer, .value, .stock, .box, .type]
+        return (super.displayableFields ?? []) + [.type, .rating]
     }
 
     override func textFor(_ field: DisplayableField) -> String? {
@@ -52,17 +52,48 @@ public class ResistorModel: PartModel {
             return displayValueString
         case .manufacturer:
             return manufacturer?.name
-        default:
-            return nil
+        case .code:
+            return code
+        case .model:
+            return descriptor
+        case .stock:
+            return "\(quantity)"
+        case .box:
+            return box?.name
+        case .type:
+            return "\(type)"
+        case .rating:
+            return ratingString
         }
     }
 
     override func set(_ value: Any, for field: DisplayableField) -> Bool {
-        if super.set(value, for: field) {
-            return true
+        if !super.set(value, for: field) {
+            switch field {
+            case .rating:
+                self.rating = NSDecimalNumber(string: value as? String)
+            case .type:
+                self.type = value as? Int16 ?? 0 //TODO: Add actual type
+            default:
+                return false
+            }
+        }
+
+        return true
+    }
+
+    private var ratingString: String {
+        guard let rating = rating, rating != 0 else {
+            return "N/A"
+        }
+
+        if rating.doubleValue >= 1 {
+            return "\(rating) W"
         } else {
-            // try to set custom fields here
-            return false
+            let one = NSDecimalNumber(integerLiteral: 1)
+            let scale = one.dividing(by: rating, withBehavior: nil)
+
+            return "1/\(scale) W"
         }
     }
 }

@@ -15,15 +15,22 @@ struct ColumnMapping {
         TableCellIdentifiers.manufacturerCell:  .manufacturer,
         TableCellIdentifiers.valueCell:         .value,
         TableCellIdentifiers.boxCell:           .box,
-        TableCellIdentifiers.nameCell:          .name,
-        TableCellIdentifiers.typeCell:          .type
+        TableCellIdentifiers.modelCell:         .model,
+        TableCellIdentifiers.typeCell:          .type,
+        TableCellIdentifiers.codeCell:          .code,
+        TableCellIdentifiers.stockCell:         .stock,
+        TableCellIdentifiers.ratingCell:        .rating
     ]
 
     static let forField: Dictionary<DisplayableField, ColumnDescriptor> = [
         .manufacturer : (TableCellIdentifiers.manufacturerCell, "Manufacturer"),
         .value: (TableCellIdentifiers.valueCell, "Value"),
+        .stock: (TableCellIdentifiers.stockCell, "Stock"),
         .box: (TableCellIdentifiers.boxCell, "Box"),
-        .type: (TableCellIdentifiers.typeCell, "Type")
+        .type: (TableCellIdentifiers.typeCell, "Type"),
+        .code: (TableCellIdentifiers.codeCell, "Code"),
+        .model: (TableCellIdentifiers.modelCell, "Model"),
+        .rating: (TableCellIdentifiers.ratingCell, "Rating")
     ]
 }
 
