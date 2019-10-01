@@ -56,4 +56,13 @@ public class ResistorModel: PartModel {
             return nil
         }
     }
+
+    override func set(_ value: Any, for field: DisplayableField) -> Bool {
+        if super.set(value, for: field) {
+            return true
+        } else {
+            // try to set custom fields here
+            return false
+        }
+    }
 }

@@ -12,8 +12,11 @@ typealias ColumnDescriptor = (identifier: NSUserInterfaceItemIdentifier, title: 
 
 struct ColumnMapping {
     static let forIdentifier: Dictionary<NSUserInterfaceItemIdentifier, DisplayableField> = [
-        TableCellIdentifiers.manufacturerCell: .manufacturer,
-        TableCellIdentifiers.valueCell:        .value
+        TableCellIdentifiers.manufacturerCell:  .manufacturer,
+        TableCellIdentifiers.valueCell:         .value,
+        TableCellIdentifiers.boxCell:           .box,
+        TableCellIdentifiers.nameCell:          .name,
+        TableCellIdentifiers.typeCell:          .type
     ]
 
     static let forField: Dictionary<DisplayableField, ColumnDescriptor> = [
@@ -40,10 +43,14 @@ struct PartList<T: ListEntryModel> {
 
         do {
             try items = context.fetch(fetchRequest)
-        } catch let error as NSError {
+        } catch {
             print(error)
             items = []
         }
+    }
+
+    mutating func add(_ item: T) {
+        items?.append(item)
     }
 }
 
@@ -56,8 +63,14 @@ class ItemListVM<T: ListEntryModel> {
 
     private (set) var columnList = [ColumnDescriptor]()
 
+    private var createNewEntry: (NSManagedObjectContext) -> T
+
     init(of type: T.Type) {
         entryList = PartList(of: type)
+
+        createNewEntry = { context in
+            return type.init(context: context)
+        }
 
         type.displayableFields?.forEach { (displayableField) in
             if let descriptor = ColumnMapping.forField[displayableField] {
@@ -80,8 +93,42 @@ class ItemListVM<T: ListEntryModel> {
         return item.textFor(field) ?? "-"
     }
 
-    func addEntry<T: ListEntryModel>(_ entry: T) -> Void {
-        //nothing here yet
+    func addNewEntry() -> Void {
+        guard let application = NSApplication.shared.delegate as? AppDelegate else {
+            return
+        }
+
+        let context = application.persistentContainer.viewContext
+        let newEntry = createNewEntry(context)
+
+        do {
+            try context.save()
+        } catch {
+            print(error)
+        }
+
+        entryList.add(newEntry)
+    }
+
+    func updateItem(at index: Int, setting field: DisplayableField, to value: Any) -> Bool {
+        guard let item = entryList.items?[index] else {
+            print("invalid index")
+            return false
+        }
+
+        guard item.set(value, for: field), let application = NSApplication.shared.delegate as? AppDelegate else {
+            print("failed to set new value for field")
+            return false
+        }
+
+        do {
+            try application.persistentContainer.viewContext.save()
+        } catch {
+            print(error)
+            return false
+        }
+
+        return true
     }
 }
 

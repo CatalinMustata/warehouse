@@ -30,6 +30,19 @@ class ItemListVC: NSViewController, MenuViewControllerDelegate {
         partsTableView.dataSource = self
     }
 
+
+    @IBAction func didTapAddItem(_ sender: Any) {
+        guard let viewModel = partListVM else {
+            return
+        }
+
+        viewModel.addNewEntry()
+        partsTableView.reloadData()
+        let newRowIndex = viewModel.viewCount - 1
+        partsTableView.selectRowIndexes(IndexSet(arrayLiteral: newRowIndex), byExtendingSelection: false)
+        partsTableView.editColumn(0, row: newRowIndex, with: nil, select: true)
+    }
+
     func partTypeDidChangeTo(_ partType: ListEntryModel.Type) {
         partListVM = ItemListVM(of: partType)
 
@@ -65,9 +78,32 @@ extension ItemListVC: NSTableViewDelegate, NSTableViewDataSource {
 
         if let cell = tableView.makeView(withIdentifier: TableCellIdentifiers.defaultTextCell, owner: self) as? NSTableCellView {
             cell.textField?.stringValue = partListVM?.textForEntry(at: row, columnIdentifier: tableColumn.identifier) ?? "-"
+            cell.textField?.delegate = self
             return cell
         }
 
         return nil
+    }
+}
+
+extension ItemListVC: NSTextFieldDelegate {
+    func controlTextDidEndEditing(_ obj: Notification) {
+        guard let textField = obj.object as? NSTextField else {
+            return
+        }
+
+        let row = partsTableView.row(for: textField)
+        let column = partsTableView.column(for: textField)
+        let identifier = partsTableView.tableColumns[column].identifier
+
+        guard row != -1 && column != -1, let field = ColumnMapping.forIdentifier[identifier] else {
+            print("Invalid field (\(row):\(column))")
+            return
+        }
+
+        // TODO: Add error handling
+        _ = partListVM?.updateItem(at: row, setting: field, to: textField.stringValue)
+
+        textField.stringValue = partListVM?.textForEntry(at: row, columnIdentifier: identifier) ?? "-"
     }
 }

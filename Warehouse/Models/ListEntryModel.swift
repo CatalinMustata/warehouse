@@ -30,4 +30,8 @@ public class ListEntryModel: NSManagedObject {
     func textFor(_ field: DisplayableField) -> String? {
         preconditionFailure("textFor(:) must be overriden by subclass")
     }
+
+    func set(_ value: Any, for field: DisplayableField) -> Bool {
+        preconditionFailure("set(_:) must be overriden by subclass")
+    }
 }
