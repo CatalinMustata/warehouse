@@ -1034,6 +1034,7 @@
                     <connections>
                         <outlet property="contentScrollView" destination="TYa-Yb-A5b" id="fln-Te-qrV"/>
                         <outlet property="partsTableView" destination="Cbp-11-grg" id="hkr-Eh-WKo"/>
+                        <outlet property="removeItemButton" destination="1Bb-MZ-YU5" id="s5Y-Eb-Ucz"/>
                     </connections>
                 </viewController>
                 <customObject id="ftW-Iw-gLt" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

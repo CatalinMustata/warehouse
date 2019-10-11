@@ -12,7 +12,8 @@ class ItemListVC: NSViewController, MenuViewControllerDelegate {
 
     @IBOutlet weak var contentScrollView: NSScrollView!
     @IBOutlet weak var partsTableView: NSTableView!
-
+    @IBOutlet weak var removeItemButton: NSButton!
+    
     private var partListVM: ItemListVM<ListEntryModel>?
 
     override init(nibName nibNameOrNil: NSNib.Name?, bundle nibBundleOrNil: Bundle?) {
@@ -38,6 +39,8 @@ class ItemListVC: NSViewController, MenuViewControllerDelegate {
 
         viewModel.addNewEntry()
         partsTableView.reloadData()
+        updateRemoveButtonState()
+        
         let newRowIndex = viewModel.viewCount - 1
         partsTableView.selectRowIndexes(IndexSet(arrayLiteral: newRowIndex), byExtendingSelection: false)
         partsTableView.editColumn(0, row: newRowIndex, with: nil, select: true)
@@ -49,6 +52,7 @@ class ItemListVC: NSViewController, MenuViewControllerDelegate {
         }
 
         viewModel.removeEntryAt(partsTableView.selectedRow)
+        updateRemoveButtonState()
         partsTableView.reloadData()
     }
     
@@ -56,6 +60,7 @@ class ItemListVC: NSViewController, MenuViewControllerDelegate {
         partListVM = ItemListVM(of: partType)
 
         partsTableView.reloadData()
+        updateRemoveButtonState()
         // it's mandatory to issue the reconfigure call after reloading data in order to
         // set the correct data set size for the table view
         reconfigureColumns()
@@ -71,6 +76,10 @@ class ItemListVC: NSViewController, MenuViewControllerDelegate {
             tableColumn.title = title
             partsTableView.addTableColumn(tableColumn)
         })
+    }
+
+    private func updateRemoveButtonState() {
+        removeItemButton.isEnabled = (self.partListVM?.viewCount ?? 0) > 0
     }
 }
 
