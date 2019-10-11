@@ -26,14 +26,14 @@ public class PartModel: ListEntryModel {
     override func set(_ value: Any, for field: DisplayableField) -> Bool {
         switch field {
         case .box:
-            guard let box = value as? Box else {
+            guard let box = value as? BoxModel else {
                 print("Invalid value of type (\(type(of: value))) instead of Box")
                 return false
             }
 
             self.box = box
         case .manufacturer:
-            guard let manufacturer = value as? Manufacturer else {
+            guard let name = value as? String, let manufacturer = ManufacturerProvider.sharedInstance.manufacturerNamed(name) else {
                 print("Invalid value of type (\(type(of: value))) instead of Manufacturer")
                 return false
             }

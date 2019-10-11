@@ -90,13 +90,20 @@ extension ItemListVC: NSTableViewDelegate, NSTableViewDataSource {
     }
 
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
-        guard let tableColumn = tableColumn else {
+        guard let columnIdentifier = tableColumn?.identifier, let cellIdentifier = ColumnMapping.representationFor[columnIdentifier] else {
             return nil
         }
 
-        if let cell = tableView.makeView(withIdentifier: TableCellIdentifiers.defaultTextCell, owner: self) as? NSTableCellView {
-            cell.textField?.stringValue = partListVM?.textForEntry(at: row, columnIdentifier: tableColumn.identifier) ?? "-"
-            cell.textField?.delegate = self
+        if let cell = tableView.makeView(withIdentifier: cellIdentifier, owner: self) {
+            if cellIdentifier == TableCellIdentifiers.defaultTextCell, let textCell = cell as? NSTableCellView {
+                textCell.textField?.stringValue = partListVM?.textForEntry(at: row, columnIdentifier: columnIdentifier) ?? "-"
+                textCell.textField?.delegate = self
+            } else if cellIdentifier == TableCellIdentifiers.defaultComboCell, let comboCell = cell as? ComboTableCellView {
+                comboCell.comboBox.stringValue = partListVM?.textForEntry(at: row, columnIdentifier: columnIdentifier) ?? "-"
+                comboCell.comboBox.dataSource = ManufacturerProvider.sharedInstance
+                comboCell.comboBox.delegate = self
+            }
+
             return cell
         }
 
@@ -104,7 +111,7 @@ extension ItemListVC: NSTableViewDelegate, NSTableViewDataSource {
     }
 }
 
-extension ItemListVC: NSTextFieldDelegate {
+extension ItemListVC: NSTextFieldDelegate, NSComboBoxDelegate {
     func controlTextDidEndEditing(_ obj: Notification) {
         guard let textField = obj.object as? NSTextField else {
             return

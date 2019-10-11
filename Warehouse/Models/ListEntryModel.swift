@@ -10,6 +10,7 @@ import CoreData
 
 enum DisplayableField {
     case code
+    case name
     case model
     case value
     case stock

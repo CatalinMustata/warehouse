@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		E63948F421F33C77005CC221 /* PartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63948F321F33C77005CC221 /* PartModel.swift */; };
 		E63948F621F4DE2F005CC221 /* ItemListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63948F521F4DE2F005CC221 /* ItemListVM.swift */; };
+		E699E7422350BED000CF9231 /* ComboTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E699E7412350BED000CF9231 /* ComboTableCellView.swift */; };
+		E699E7442350C2F500CF9231 /* ManufacturerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E699E7432350C2F500CF9231 /* ManufacturerModel.swift */; };
+		E699E7462350C45A00CF9231 /* ManufacturerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E699E7452350C45A00CF9231 /* ManufacturerProvider.swift */; };
+		E699E7482350CCC500CF9231 /* BoxModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E699E7472350CCC500CF9231 /* BoxModel.swift */; };
+		E699E74A2350CD5D00CF9231 /* OrganizationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E699E7492350CD5D00CF9231 /* OrganizationModel.swift */; };
 		E6DB1A3221D3F17000A6E89B /* ItemListVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DB1A3121D3F17000A6E89B /* ItemListVC.swift */; };
 		E6DB1A3421D425C500A6E89B /* OutlineSelectableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DB1A3321D425C500A6E89B /* OutlineSelectableCell.swift */; };
 		E6DB1A3621D5371200A6E89B /* PartCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = E6DB1A3521D5371200A6E89B /* PartCategory.swift */; };
@@ -39,6 +44,11 @@
 /* Begin PBXFileReference section */
 		E63948F321F33C77005CC221 /* PartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartModel.swift; sourceTree = "<group>"; };
 		E63948F521F4DE2F005CC221 /* ItemListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListVM.swift; sourceTree = "<group>"; };
+		E699E7412350BED000CF9231 /* ComboTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComboTableCellView.swift; sourceTree = "<group>"; };
+		E699E7432350C2F500CF9231 /* ManufacturerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManufacturerModel.swift; sourceTree = "<group>"; };
+		E699E7452350C45A00CF9231 /* ManufacturerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManufacturerProvider.swift; sourceTree = "<group>"; };
+		E699E7472350CCC500CF9231 /* BoxModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxModel.swift; sourceTree = "<group>"; };
+		E699E7492350CD5D00CF9231 /* OrganizationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrganizationModel.swift; sourceTree = "<group>"; };
 		E6DB1A3121D3F17000A6E89B /* ItemListVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListVC.swift; sourceTree = "<group>"; };
 		E6DB1A3321D425C500A6E89B /* OutlineSelectableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OutlineSelectableCell.swift; sourceTree = "<group>"; };
 		E6DB1A3521D5371200A6E89B /* PartCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartCategory.swift; sourceTree = "<group>"; };
@@ -88,13 +98,25 @@
 			path = ViewModels;
 			sourceTree = "<group>";
 		};
+		E699E7402350BEAD00CF9231 /* TableViews */ = {
+			isa = PBXGroup;
+			children = (
+				E699E7412350BED000CF9231 /* ComboTableCellView.swift */,
+			);
+			path = TableViews;
+			sourceTree = "<group>";
+		};
 		E6DB1A3921D6371F00A6E89B /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				E6DB1A3521D5371200A6E89B /* PartCategory.swift */,
 				E6DB1A3A21D6373800A6E89B /* ListEntryModel.swift */,
 				E63948F321F33C77005CC221 /* PartModel.swift */,
+				E699E7432350C2F500CF9231 /* ManufacturerModel.swift */,
+				E699E7472350CCC500CF9231 /* BoxModel.swift */,
+				E699E7492350CD5D00CF9231 /* OrganizationModel.swift */,
 				E6DB1A3C21D63E0A00A6E89B /* ResistorModel.swift */,
+				E699E7452350C45A00CF9231 /* ManufacturerProvider.swift */,
 				E6DB1A3E21D6493A00A6E89B /* CapacitorModel.swift */,
 			);
 			path = Models;
@@ -129,6 +151,7 @@
 				E6DB1A3121D3F17000A6E89B /* ItemListVC.swift */,
 				E6F4C67721D39D7000FAC50F /* MenuVC.swift */,
 				E6DB1A4421DE694800A6E89B /* StoryboardIdentifiers.swift */,
+				E699E7402350BEAD00CF9231 /* TableViews */,
 				E63948ED21F33497005CC221 /* ViewModels */,
 				E6DB1A3921D6371F00A6E89B /* Models */,
 				E6F4C66221D390C200FAC50F /* Info.plist */,
@@ -251,17 +274,22 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E699E7442350C2F500CF9231 /* ManufacturerModel.swift in Sources */,
+				E699E7462350C45A00CF9231 /* ManufacturerProvider.swift in Sources */,
 				E6DB1A3421D425C500A6E89B /* OutlineSelectableCell.swift in Sources */,
 				E63948F421F33C77005CC221 /* PartModel.swift in Sources */,
 				E6F4C65C21D390C200FAC50F /* Warehouse.xcdatamodeld in Sources */,
+				E699E7482350CCC500CF9231 /* BoxModel.swift in Sources */,
 				E6F4C67821D39D7000FAC50F /* MenuVC.swift in Sources */,
 				E6DB1A3621D5371200A6E89B /* PartCategory.swift in Sources */,
 				E6DB1A4521DE694800A6E89B /* StoryboardIdentifiers.swift in Sources */,
 				E6DB1A3F21D6493A00A6E89B /* CapacitorModel.swift in Sources */,
 				E63948F621F4DE2F005CC221 /* ItemListVM.swift in Sources */,
+				E699E74A2350CD5D00CF9231 /* OrganizationModel.swift in Sources */,
 				E6DB1A3B21D6373800A6E89B /* ListEntryModel.swift in Sources */,
 				E6DB1A3D21D63E0A00A6E89B /* ResistorModel.swift in Sources */,
 				E6DB1A3221D3F17000A6E89B /* ItemListVC.swift in Sources */,
+				E699E7422350BED000CF9231 /* ComboTableCellView.swift in Sources */,
 				E6F4C65921D390C200FAC50F /* ContainerVC.swift in Sources */,
 				E6F4C65721D390C200FAC50F /* AppDelegate.swift in Sources */,
 				E6DB1A4321DE62E700A6E89B /* MenuVM.swift in Sources */,

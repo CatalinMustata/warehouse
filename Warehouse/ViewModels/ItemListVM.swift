@@ -11,8 +11,9 @@ import Cocoa
 typealias ColumnDescriptor = (identifier: NSUserInterfaceItemIdentifier, title: String)
 
 struct ColumnMapping {
-    static let forIdentifier: Dictionary<NSUserInterfaceItemIdentifier, DisplayableField> = [
+    static let forIdentifier: [NSUserInterfaceItemIdentifier: DisplayableField] = [
         TableCellIdentifiers.manufacturerCell:  .manufacturer,
+        TableCellIdentifiers.nameCell:          .name,
         TableCellIdentifiers.valueCell:         .value,
         TableCellIdentifiers.boxCell:           .box,
         TableCellIdentifiers.modelCell:         .model,
@@ -22,8 +23,21 @@ struct ColumnMapping {
         TableCellIdentifiers.ratingCell:        .rating
     ]
 
-    static let forField: Dictionary<DisplayableField, ColumnDescriptor> = [
-        .manufacturer : (TableCellIdentifiers.manufacturerCell, "Manufacturer"),
+    static let representationFor: [NSUserInterfaceItemIdentifier: NSUserInterfaceItemIdentifier] = [
+        TableCellIdentifiers.manufacturerCell:  TableCellIdentifiers.defaultComboCell,
+        TableCellIdentifiers.valueCell:         TableCellIdentifiers.defaultTextCell,
+        TableCellIdentifiers.boxCell:           TableCellIdentifiers.defaultComboCell,
+        TableCellIdentifiers.modelCell:         TableCellIdentifiers.defaultTextCell,
+        TableCellIdentifiers.typeCell:          TableCellIdentifiers.defaultTextCell,
+        TableCellIdentifiers.codeCell:          TableCellIdentifiers.defaultTextCell,
+        TableCellIdentifiers.stockCell:         TableCellIdentifiers.defaultTextCell,
+        TableCellIdentifiers.ratingCell:        TableCellIdentifiers.defaultTextCell,
+        TableCellIdentifiers.nameCell:          TableCellIdentifiers.defaultTextCell
+    ]
+
+    static let forField: [DisplayableField: ColumnDescriptor] = [
+        .manufacturer: (TableCellIdentifiers.manufacturerCell, "Manufacturer"),
+        .name: (TableCellIdentifiers.nameCell, "Name"),
         .value: (TableCellIdentifiers.valueCell, "Value"),
         .stock: (TableCellIdentifiers.stockCell, "Stock"),
         .box: (TableCellIdentifiers.boxCell, "Box"),
@@ -72,15 +86,25 @@ class ItemListVM<T: ListEntryModel> {
         return entryList.items?.count ?? 0
     }
 
-    private (set) var columnList = [ColumnDescriptor]()
+    private(set) var columnList = [ColumnDescriptor]()
 
     private var createNewEntry: (NSManagedObjectContext) -> T
+
+    private var didCreateEntry: () -> Void
 
     init(of type: T.Type) {
         entryList = PartList(of: type)
 
         createNewEntry = { context in
             return type.init(context: context)
+        }
+
+        didCreateEntry = {
+            if type is ManufacturerModel.Type {
+                ManufacturerProvider.sharedInstance.reloadData()
+            } else if type is BoxModel.Type {
+                print("Should update boxes provider")
+            }
         }
 
         type.displayableFields?.forEach { (displayableField) in
@@ -119,6 +143,8 @@ class ItemListVM<T: ListEntryModel> {
         }
 
         entryList.add(newEntry)
+
+        didCreateEntry()
     }
 
     func removeEntryAt(_ index: Int) {

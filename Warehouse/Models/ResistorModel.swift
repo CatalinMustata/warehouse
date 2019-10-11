@@ -64,6 +64,8 @@ public class ResistorModel: PartModel {
             return "\(type)"
         case .rating:
             return ratingString
+        default:
+            return nil
         }
     }
 
