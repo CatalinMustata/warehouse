@@ -43,6 +43,15 @@ class ItemListVC: NSViewController, MenuViewControllerDelegate {
         partsTableView.editColumn(0, row: newRowIndex, with: nil, select: true)
     }
 
+    @IBAction func didTapRemoveItem(_ sender: Any) {
+        guard let viewModel = partListVM else {
+            return
+        }
+
+        viewModel.removeEntryAt(partsTableView.selectedRow)
+        partsTableView.reloadData()
+    }
+    
     func partTypeDidChangeTo(_ partType: ListEntryModel.Type) {
         partListVM = ItemListVM(of: partType)
 

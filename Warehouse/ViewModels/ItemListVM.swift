@@ -59,6 +59,10 @@ struct PartList<T: ListEntryModel> {
     mutating func add(_ item: T) {
         items?.append(item)
     }
+
+    mutating func remove(at index: Int) {
+        items?.remove(at: index)
+    }
 }
 
 class ItemListVM<T: ListEntryModel> {
@@ -115,6 +119,22 @@ class ItemListVM<T: ListEntryModel> {
         }
 
         entryList.add(newEntry)
+    }
+
+    func removeEntryAt(_ index: Int) {
+        guard let application = NSApplication.shared.delegate as? AppDelegate, let item = entryList.items?[index] else {
+            return
+        }
+
+        let context = application.persistentContainer.viewContext
+        context.delete(item)
+
+        do {
+            try context.save()
+            entryList.remove(at: index)
+        } catch {
+            print("Failed to remove item from DB: \(error)")
+        }
     }
 
     func updateItem(at index: Int, setting field: DisplayableField, to value: Any) -> Bool {

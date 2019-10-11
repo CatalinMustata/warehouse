@@ -1007,13 +1007,25 @@
                                     <action selector="didTapAddItem:" target="g2i-gM-ifI" id="Lhi-Z2-c9f"/>
                                 </connections>
                             </button>
+                            <button translatesAutoresizingMaskIntoConstraints="NO" id="1Bb-MZ-YU5">
+                                <rect key="frame" x="29" y="9" width="11" height="11"/>
+                                <buttonCell key="cell" type="square" bezelStyle="shadowlessSquare" image="NSRemoveTemplate" imagePosition="only" alignment="center" imageScaling="proportionallyUpOrDown" inset="2" id="xQ0-wi-Sda">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="didTapRemoveItem:" target="g2i-gM-ifI" id="4Dn-Og-hSp"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="8iy-do-Sil" secondAttribute="trailing" constant="12" id="66H-CJ-8ed"/>
                             <constraint firstAttribute="bottom" secondItem="TYa-Yb-A5b" secondAttribute="bottom" constant="29" id="N8o-39-qoB"/>
+                            <constraint firstAttribute="bottom" secondItem="1Bb-MZ-YU5" secondAttribute="bottom" constant="9" id="Q3U-x4-TPU"/>
                             <constraint firstItem="TYa-Yb-A5b" firstAttribute="leading" secondItem="fgw-Hn-W9f" secondAttribute="leading" id="Q5O-0r-PaS"/>
                             <constraint firstItem="8iy-do-Sil" firstAttribute="top" secondItem="fgw-Hn-W9f" secondAttribute="top" constant="8" id="Qgu-Tb-Iv9"/>
                             <constraint firstAttribute="trailing" secondItem="TYa-Yb-A5b" secondAttribute="trailing" id="TpY-pY-4w8"/>
+                            <constraint firstItem="1Bb-MZ-YU5" firstAttribute="leading" secondItem="FxR-6S-9ig" secondAttribute="trailing" constant="10" id="ZlI-qN-tvx"/>
                             <constraint firstAttribute="bottom" secondItem="FxR-6S-9ig" secondAttribute="bottom" constant="9" id="drt-hc-HN8"/>
                             <constraint firstItem="FxR-6S-9ig" firstAttribute="leading" secondItem="fgw-Hn-W9f" secondAttribute="leading" constant="8" id="jXX-3d-kb7"/>
                             <constraint firstItem="TYa-Yb-A5b" firstAttribute="top" secondItem="8iy-do-Sil" secondAttribute="bottom" constant="8" id="pp0-lO-ImH"/>
@@ -1033,6 +1045,7 @@
         <image name="BoxIconTemplate" width="25" height="25"/>
         <image name="ListIconTemplate" width="25" height="25"/>
         <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSRemoveTemplate" width="11" height="11"/>
         <image name="ResistorIconTemplate" width="25" height="25"/>
     </resources>
 </document>
