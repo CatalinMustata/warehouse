@@ -11,11 +11,11 @@ import CoreData
 @objc(ResistorModel)
 public class ResistorModel: PartModel {
     override class var groupName: String {
-        return "Resistors"
+        "Resistors"
     }
 
     override class var entityName: String {
-        return "Resistor"
+        "Resistor"
     }
 
     override var displayValueString: String {
