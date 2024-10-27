@@ -100,7 +100,7 @@ extension ItemListVC: NSTableViewDelegate, NSTableViewDataSource {
                 textCell.textField?.delegate = self
             } else if cellIdentifier == TableCellIdentifiers.defaultComboCell, let comboCell = cell as? ComboTableCellView {
                 comboCell.comboBox.stringValue = partListVM?.textForEntry(at: row, columnIdentifier: columnIdentifier) ?? "-"
-                comboCell.comboBox.dataSource = ManufacturerProvider.sharedInstance
+                comboCell.comboBox.dataSource = partListVM?.providerForEntry(at: row, columnIdentifier: columnIdentifier)
                 comboCell.comboBox.delegate = self
             }
 

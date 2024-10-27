@@ -26,7 +26,7 @@ public class PartModel: ListEntryModel {
     override func set(_ value: Any, for field: DisplayableField) -> Bool {
         switch field {
         case .box:
-            guard let box = value as? BoxModel else {
+            guard let name = value as? String, let box = BoxProvider.sharedInstance.boxNamed(name) else {
                 print("Invalid value of type (\(type(of: value))) instead of Box")
                 return false
             }

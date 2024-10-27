@@ -103,7 +103,7 @@ class ItemListVM<T: ListEntryModel> {
             if type is ManufacturerModel.Type {
                 ManufacturerProvider.sharedInstance.reloadData()
             } else if type is BoxModel.Type {
-                print("Should update boxes provider")
+                BoxProvider.sharedInstance.reloadData()
             }
         }
 
@@ -126,6 +126,21 @@ class ItemListVM<T: ListEntryModel> {
         }
 
         return item.textFor(field) ?? "-"
+    }
+
+    func providerForEntry(at rowIndex: Int, columnIdentifier: NSUserInterfaceItemIdentifier) -> NSComboBoxDataSource? {
+        guard let columnType = ColumnMapping.forIdentifier[columnIdentifier] else {
+            return nil
+        }
+
+        switch columnType {
+        case .box:
+            return BoxProvider.sharedInstance
+        case .manufacturer:
+            return ManufacturerProvider.sharedInstance
+        default:
+            return nil
+        }
     }
 
     func addNewEntry() -> Void {

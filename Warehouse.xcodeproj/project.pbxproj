@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		E63948F421F33C77005CC221 /* PartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63948F321F33C77005CC221 /* PartModel.swift */; };
 		E63948F621F4DE2F005CC221 /* ItemListVM.swift in Sources */ = {isa = PBXBuildFile; fileRef = E63948F521F4DE2F005CC221 /* ItemListVM.swift */; };
+		E674F9E02CCEC81300C1A877 /* BoxProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E674F9DF2CCEC80E00C1A877 /* BoxProvider.swift */; };
 		E699E7422350BED000CF9231 /* ComboTableCellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E699E7412350BED000CF9231 /* ComboTableCellView.swift */; };
 		E699E7442350C2F500CF9231 /* ManufacturerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E699E7432350C2F500CF9231 /* ManufacturerModel.swift */; };
 		E699E7462350C45A00CF9231 /* ManufacturerProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = E699E7452350C45A00CF9231 /* ManufacturerProvider.swift */; };
@@ -44,6 +45,7 @@
 /* Begin PBXFileReference section */
 		E63948F321F33C77005CC221 /* PartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PartModel.swift; sourceTree = "<group>"; };
 		E63948F521F4DE2F005CC221 /* ItemListVM.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ItemListVM.swift; sourceTree = "<group>"; };
+		E674F9DF2CCEC80E00C1A877 /* BoxProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoxProvider.swift; sourceTree = "<group>"; };
 		E699E7412350BED000CF9231 /* ComboTableCellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ComboTableCellView.swift; sourceTree = "<group>"; };
 		E699E7432350C2F500CF9231 /* ManufacturerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManufacturerModel.swift; sourceTree = "<group>"; };
 		E699E7452350C45A00CF9231 /* ManufacturerProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManufacturerProvider.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 		E6DB1A3921D6371F00A6E89B /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				E674F9DF2CCEC80E00C1A877 /* BoxProvider.swift */,
 				E6DB1A3521D5371200A6E89B /* PartCategory.swift */,
 				E6DB1A3A21D6373800A6E89B /* ListEntryModel.swift */,
 				E63948F321F33C77005CC221 /* PartModel.swift */,
@@ -278,6 +281,7 @@
 				E699E7462350C45A00CF9231 /* ManufacturerProvider.swift in Sources */,
 				E6DB1A3421D425C500A6E89B /* OutlineSelectableCell.swift in Sources */,
 				E63948F421F33C77005CC221 /* PartModel.swift in Sources */,
+				E674F9E02CCEC81300C1A877 /* BoxProvider.swift in Sources */,
 				E6F4C65C21D390C200FAC50F /* Warehouse.xcdatamodeld in Sources */,
 				E699E7482350CCC500CF9231 /* BoxModel.swift in Sources */,
 				E6F4C67821D39D7000FAC50F /* MenuVC.swift in Sources */,
