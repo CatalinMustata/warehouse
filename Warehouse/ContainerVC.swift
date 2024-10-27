@@ -11,7 +11,7 @@ import Cocoa
 class ContainerVC: NSSplitViewController {
 
     var menuVC : MenuVC!
-    var contentVC : PartListVC!
+    var contentVC : ItemListVC!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,12 +21,13 @@ class ContainerVC: NSSplitViewController {
             abort()
         }
 
-        guard let contentVC = splitViewItems[1].viewController as? PartListVC else {
+        guard let contentVC = splitViewItems[1].viewController as? ItemListVC else {
             print("Right panel not initialized with a Part List VC")
             abort()
         }
 
         menuVC.menuDelegate = contentVC
+        contentVC.partTypeDidChangeTo(ResistorModel.self)
     }
 
     override var representedObject: Any? {

@@ -19,7 +19,7 @@ typealias CellConfiguration = (NSUserInterfaceItemIdentifier, String?)
 final class MenuVM {
     private static let partCategories = [PartCategory("PASSIVE", withChildren: [ResistorModel.self, CapacitorModel.self])]
 
-    private static let orgCategories = ["Boxes", "Manufacturers"]
+    private static let orgCategories = [BoxModel.self, ManufacturerModel.self]
 
     var dataViewType: TabViewType = .parts
 
@@ -136,9 +136,9 @@ final class MenuVM {
         var identifier: NSUserInterfaceItemIdentifier!
         var stringValue: String?
 
-        if let org = item as? String {
+        if let org = item as? OrganizationModel.Type {
             identifier = SideBarCellIdentifiers.selectableEntryCell
-            stringValue = org
+            stringValue = org.entityName
         } else {
             print("\(String(describing:item)) is not supported")
         }

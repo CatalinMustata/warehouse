@@ -17,3 +17,19 @@ struct SideBarCellIdentifiers {
     static let categoryCell = NSUserInterfaceItemIdentifier(rawValue: "PartCategoryCell")
     static let selectableEntryCell = NSUserInterfaceItemIdentifier(rawValue: "PartTypeCell")
 }
+
+struct TableCellIdentifiers {
+    // default cell used for creating new views
+    static let defaultTextCell = NSUserInterfaceItemIdentifier(rawValue: "DefaultTextCell")
+    static let defaultComboCell = NSUserInterfaceItemIdentifier(rawValue: "DefaultComboCell")
+    // cell identifiers used to distinguish between different displayable properties
+    static let manufacturerCell = NSUserInterfaceItemIdentifier(rawValue: "ManufacturerCell")
+    static let nameCell = NSUserInterfaceItemIdentifier(rawValue: "NameCell")
+    static let valueCell = NSUserInterfaceItemIdentifier(rawValue: "ValueCell")
+    static let modelCell = NSUserInterfaceItemIdentifier(rawValue: "ModelCell")
+    static let boxCell =  NSUserInterfaceItemIdentifier(rawValue: "BoxCell")
+    static let stockCell =  NSUserInterfaceItemIdentifier(rawValue: "StockCell")
+    static let typeCell =  NSUserInterfaceItemIdentifier(rawValue: "TypeCell")
+    static let codeCell =  NSUserInterfaceItemIdentifier(rawValue: "CodeCell")
+    static let ratingCell =  NSUserInterfaceItemIdentifier(rawValue: "RatingCell")
+}

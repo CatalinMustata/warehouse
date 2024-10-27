@@ -9,7 +9,7 @@
 import Cocoa
 
 protocol MenuViewControllerDelegate: class {
-    func partTypeDidChangeTo(_ partType: PartModel.Type) -> Void
+    func partTypeDidChangeTo(_ partType: ListEntryModel.Type) -> Void
 }
 
 class MenuVC: NSViewController, NSWindowDelegate {
@@ -89,10 +89,14 @@ extension MenuVC: NSOutlineViewDelegate, NSOutlineViewDataSource {
             return
         }
 
-        if let partType = menu.item(atRow: menu.selectedRow) as? PartModel.Type {
-            menuDelegate?.partTypeDidChangeTo(partType)
+        let selectedEntry = menu.item(atRow: menu.selectedRow)
+
+        if selectedEntry is PartModel.Type {
+            menuDelegate?.partTypeDidChangeTo(selectedEntry as! PartModel.Type)
+        } else if selectedEntry is OrganizationModel.Type {
+            menuDelegate?.partTypeDidChangeTo(selectedEntry as! OrganizationModel.Type)
         } else {
-            print("error")
+            print("Unsupported Entry")
         }
     }
 
